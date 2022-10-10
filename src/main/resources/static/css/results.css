@@ -1,0 +1,39 @@
+body {
+    text-align: left;
+    font-family: 'Jost', sans-serif;
+}
+
+#main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+#txtConsulta {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 301px;
+    border-radius: 10px;
+    padding: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#logo {
+    width: 100px;
+    position: fixed;
+    left: 11px;
+}
+
+button {
+    padding: 7px 15px;
+}
+
+#resultados {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 30px;
+}
+
+.resultados {
+    color: blue;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/results.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+
+    <title>Serch Engine</title>
+</head>
+
+<body>
+    <div id="main">
+        <img src="images/buscar.png" alt="buscador" id="logo" />
+        <input type="text" id="txtConsulta" />
+        <button type="button" onclick="nuevaBusqueda()" id="btnBuscar" value="Search">Search in Google</button>
+        <hr/>
+        <div id="contenedorResultados">
+            <div id="resultados">
+                <div class="resultados">
+                    API REST con Express.js - Estudia Api Node.Js
+                </div>
+                <span class="">Incrementa tus capacidades y habilidades junto a profesionales expertos. ¡Comienza ahora! Especialízate y lleva tu carrera al siguiente nivel con nuestras rutas de aprendizaje. Clases descargables. Certificados digitales. Aprende Online. Aprende desde cero.</span>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+    	let htmltxt =""
+    	
+    	let query = document.location.href.split("?")[1].split("=")[1];
+    	document.getElementById("txtConsulta").value=query;
+    	
+    	search(query);
+    	
+    	function getResultSearch (resultadoParcial) {
+    		let title = resultadoParcial.title;
+    		let descripcion = resultadoParcial.content;
+    		let link = resultadoParcial.url;
+    		html_parcial = '<div class = "resultados">'
+    				+ '<div class "resultados"><a href ="'+link+'" >'+title+'</a></div>'
+    				+ '<span>'+descripcion+'</span>'
+    				+ '</div>';	
+   		return html_parcial    
+    				
+    	}
+    	function search(txtSearch){
+		fetch('http://localhost:8088/api/search?query='+txtSearch)
+    	.then(response => response.json())
+    	.then(json=> {
+    		console.log(json)
+    		for (const resultado of json){
+    			htmltxt += getResultSearch(resultado)
+    		}
+     		document.getElementById("contenedorResultados").innerHTML = htmltxt;
+    	});
+			    	
+    	}
+    	function nuevaBusqueda(){
+    		window.location = window.location.href.split('?')[0]+'?query='+
+    		document.getElementById("txtConsulta").value;
+    	}
+    	
+    	
+    </script>
+</body>
+
+</html>
